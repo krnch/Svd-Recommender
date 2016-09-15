@@ -76,7 +76,7 @@ for jsonstr in open("C:\\yelp_academic_dataset_review.json").readlines():
 
 users = unique_list(users)
 
-for jsonstr in open("C:\\yelp+academic_dataset_review.json").readlines():
+for jsonstr in open("C:\\yelp_academic_dataset_review.json").readlines():
     if(jsonstr != ""):
         jsonobj = json.loads(jsonstr)
         businesses.append(jsonobj["business_id"])
