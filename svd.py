@@ -1,4 +1,4 @@
- 
+import unittest
 import json
 import gc
 from scipy import linalg as LAS
@@ -135,3 +135,30 @@ reconstructedMatrix= dot(dot(U,linalg.diagsvd(s,len(matrix),len(V))),V)
 print "RMSE"
 print rmse(U,matrix1)
 
+
+class MyTest(unittest.TestCase):
+    def test_1(self):
+        a=np.matrix('1 2 ; 3 4')
+        b=np.matrix('4 5 ; 6 7')
+       
+        self.assertEqual(rmse(a,b), 3)
+        
+    def test_2(self):
+        a=np.matrix('1 2 ; 3 4')
+        b=np.matrix('2 3 ; 4 5')
+       
+        self.assertEqual(rmse(a,b), 1)
+    
+    def test_3(self):
+        un1=[1,2,2,3,3,47,81,92]
+        un2=[1,2,3,47,81,92]
+        
+        self.assertEqual(unique_list(un1),un2)
+        
+    def test_4(self):
+        un1=[97,42,33]
+        un2=[97,42,33]
+        
+        self.assertEqual(unique_list(un1),un2)
+    
+ unittest.main()
