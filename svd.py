@@ -68,21 +68,21 @@ def rmse(matrix1, matrix2):
 users = []
 businesses = []
 
-for jsonstr in open("C:\\yelp_academic_dataset_review.json").readlines():
+for jsonstr in open("C:\\sample_data.json").readlines():
     if(jsonstr != ""):
         jsonobj = json.loads(jsonstr)
         users.append(jsonobj["user_id"])
 
 users = unique_list(users)
 
-for jsonstr in open("C:\\yelp_academic_dataset_review.json").readlines():
+for jsonstr in open("C:\\sample_data.json").readlines():
     if(jsonstr != ""):
         jsonobj = json.loads(jsonstr)
         businesses.append(jsonobj["business_id"])
 
 businesses = unique_list(businesses)
 
-print "Test Before Matrix Creation"
+# Before Matrix Creation
 
 
 mat = [len(users), len(businesses)]
@@ -92,7 +92,7 @@ rating_matrix = np.matrix(mat, dtype = float)
 rating_matrix = np.zeros((len(users),len(users)), dtype=float)
 s_no = 1
 i=1
-for jsonstr in open("C:\\yelp_academic_dataset_review.json").readlines():
+for jsonstr in open("C:\\sample_data.json").readlines():
     if(jsonstr != ""):
         jsonobj = json.loads(jsonstr)
         rating_matrix[users.index(jsonobj["user_id"])][businesses.index(jsonobj["business_id"])] = jsonobj["stars"]
@@ -116,7 +116,7 @@ print "RMSE"
 print rmse(U,matrix1)
 
 
-
+#some random testcases just rechecking the rmse and unique functions
 class MyTest(unittest.TestCase):
     def test_1(self):
         a=np.matrix('1 2 ; 3 4')
