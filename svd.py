@@ -42,25 +42,24 @@ def avg(matrix):
         if tst>(tc*0.20):
                     break        
                    
-                #print matrix[i][j]
+     
  
            
     matrix = np.matrix(matrix)
-    #print matrix
+
     return matrix
 
 def rmse(matrix1, matrix2):
     subtraction = np.subtract(matrix2, matrix1)
     subtraction = np.array(subtraction)
-    #print subtraction
-    #squared = LA.matrix_power(subtraction, 2)
+
     for i in range(len(subtraction)):
         for j in range(len(subtraction[0])):
             a = subtraction[i][j] * subtraction[i][j]
             subtraction[i][j] = a
     num = 0.0
     num = num + (len(subtraction)*len(subtraction[0]))
-    #print "SUM:\n"
+ 
     sum_ = np.sum(subtraction)
     mean = sum_/num
     rmse_ = math.sqrt(mean)
@@ -85,14 +84,10 @@ businesses = unique_list(businesses)
 
 print "Test Before Matrix Creation"
 
-#rating_matrix = np.zeros((len(users),len(businesses)), dtype=float)
+
 mat = [len(users), len(businesses)]
 rating_matrix = np.matrix(mat, dtype = float)
 
-
-#print len(businesses)
-#print len(users)
-#print rating_matrix
 
 rating_matrix = np.zeros((len(users),len(users)), dtype=float)
 s_no = 1
@@ -103,37 +98,23 @@ for jsonstr in open("C:\\yelp_academic_dataset_review.json").readlines():
         rating_matrix[users.index(jsonobj["user_id"])][businesses.index(jsonobj["business_id"])] = jsonobj["stars"]
         
 
-print "Test After Matrix Creation"
-#print rating_matrix
-matrix1 = rating_matrix
-#print('\n')
-matrix2 = avg(rating_matrix)
-#print matrix2
-#print rmse(matrix2,matrix1)
-#print rating_matrix
-#zerofy_average(rating_matrix)
-#print (rating_matrix)
+# After Matrix Creation"
 
+matrix1 = rating_matrix
+
+matrix2 = avg(rating_matrix)
 
 matrix = rating_matrix
 U, s, V = linalg.svd( matrix )
-#print "U:"
-#print U
-#print "sigma:"
-#print s
-#print "VT:"
-#print V
+
 dimensions = 1
 rows, cols = matrix.shape
-#for index in xrange(dimensions, rows):
-# s[index]=0
-#print "reduced sigma:"
-#print s
+
 reconstructedMatrix= dot(dot(U,linalg.diagsvd(s,len(matrix),len(V))),V)
-#print "reconstructed:"
-#print reconstructedMatrix
+
 print "RMSE"
 print rmse(U,matrix1)
+
 
 
 class MyTest(unittest.TestCase):
